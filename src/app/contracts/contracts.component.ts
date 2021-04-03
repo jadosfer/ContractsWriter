@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractsComponent implements OnInit {
 
+  InfoAlquileres: string;
+  InfoAutos: string;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
+ 
 }
