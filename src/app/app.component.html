@@ -11,10 +11,10 @@
   <div class="collapse navbar-collapse" id="mynav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Contratos</a>
+        <a class="nav-link" routerLink="contracts">Contratos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Presentación</a>
+        <a class="nav-link" routerLink="presentation">Presentación</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -31,7 +31,8 @@
   </div>
 </nav>
 
-<div class="container-fluid">
-  <h1>Documentos legales a un click de distancia</h1>
-  <h2>La forma más sencilla de tener el documento que buscabas</h2>
+<div class="container-fluid">   
+  <router-outlet></router-outlet>  
 </div>
+
+
