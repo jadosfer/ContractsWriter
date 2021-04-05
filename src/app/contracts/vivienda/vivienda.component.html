@@ -7,10 +7,26 @@
         <div class="card mt-1">
             <div class="card-header">
               <h4>Contrato de Alquiler de Vivienda</h4>
-            </div>            
+            </div>   
             
+            <label for="" class="col-md-4 col-form-label"><b>Datos del Inquilino:</b></label>
+
             <table>
                 <tr  *ngFor="let field of fields">                        
+                        <div class="form-group form-row">            
+                            <div class="col-md-8">                        
+                                <label for="{{field.id}}" class="col-md-4 col-form-label">{{field.nombre}}:</label>
+                                <input type="text" name="{{field.id}}" id="{{field.id}}" placeholder="{{field.nombre}}" class="form-control" formControlName="{{field.id}}">                                             
+                            </div>
+                        </div>                   
+                  </tr>
+              </table>
+
+              <label for="" class="col-md-4 col-form-label"><b>Datos del Propietario:</b></label>
+
+              
+            <table>
+                <tr  *ngFor="let field of ownerFields">                        
                         <div class="form-group form-row">            
                             <div class="col-md-8">                        
                                 <label for="{{field.id}}" class="col-md-4 col-form-label">{{field.nombre}}:</label>

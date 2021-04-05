@@ -17,16 +17,21 @@ export class ViviendaComponent implements OnInit {
 
   viviendaForm: FormGroup;
   submitted: boolean = false; //lo agregué  yo para poder determinar el submitted
-  fields = [{nombre: "Nombre", id: "firstName"}, {nombre: "Apellido", id: "lastName"}, {nombre: "DNI", id: "documentNumber"}, {nombre: "Dirección", id: "adress"}]
+  fields = [{nombre: "Nombre", id: "renterFirstName"}, {nombre: "Apellido", id: "renterLastName"}, {nombre: "DNI", id: "renterDocumentNumber"}, {nombre: "Dirección", id: "renterAdress"}];
+  ownerFields = [{nombre: "Nombre", id: "ownerFirstName"}, {nombre: "Apellido", id: "ownerLastName"}, {nombre: "DNI", id: "ownerDocumentNumber"}, {nombre: "Dirección", id: "ownerAdress"}];
 
   constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.viviendaForm = this.formBuilder.group({
-      firstName: new FormControl(null),
-      lastName: new FormControl(null),
-      documentNumber: new FormControl(null),
-      adress: new FormControl(null),
+      renterFirstName: new FormControl(null),
+      renterLastName: new FormControl(null),
+      renterDocumentNumber: new FormControl(null),
+      renterAdress: new FormControl(null),
+      ownerFirstName: new FormControl(null),
+      ownerLastName: new FormControl(null),
+      ownerDocumentNumber: new FormControl(null),
+      ownerAdress: new FormControl(null)
     })
   }
 
@@ -35,10 +40,14 @@ export class ViviendaComponent implements OnInit {
     
     const documentCreator = new DocumentCreator();
     const doc = documentCreator.create([
-      this.viviendaForm.value["firstName"],
-      this.viviendaForm.value["lastName"],
-      this.viviendaForm.value["documentNumber"],
-      this.viviendaForm.value["adress"],
+      this.viviendaForm.value["renterFirstName"],
+      this.viviendaForm.value["renterLastName"],
+      this.viviendaForm.value["renterDocumentNumber"],
+      this.viviendaForm.value["renterAdress"],
+      this.viviendaForm.value["ownerFirstName"],
+      this.viviendaForm.value["ownerLastName"],
+      this.viviendaForm.value["ownerDocumentNumber"],
+      this.viviendaForm.value["ownerAdress"],
       cap1,
       cap2,
       cap3,
@@ -56,6 +65,6 @@ export class ViviendaComponent implements OnInit {
     //Display current form value
     this.submitted = true;    
     console.log(this.viviendaForm.value); //acceder a todos los campos
-    console.log(this.viviendaForm.value["firstName"]); //acceder a un campo puntual   
+    console.log(this.viviendaForm.value["renterFirstName"]); //acceder a un campo puntual   
   }  
 }

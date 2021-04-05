@@ -20,7 +20,7 @@ import {
   export class DocumentCreator {
     
     // tslint:disable-next-line: typedef
-    public create([firstName, lastName, DNI, adress, cap1, cap2, cap3, cap4]): Document {
+    public create([renterFirstName, renterLastName, renterDocumentNumber, renterAdress, ownerFirstName, ownerLastName, ownerDocumentNumber, ownerAdress, cap1, cap2, cap3, cap4]): Document {
       const document = new Document({
         sections: [
           {
@@ -32,7 +32,7 @@ import {
               new Paragraph({
                 text: ""
               }),
-              this.createContactInfo(PHONE_NUMBER, PROFILE_URL, EMAIL, firstName, lastName, DNI, adress),
+              this.createContactInfo(PHONE_NUMBER, PROFILE_URL, EMAIL, renterFirstName, renterLastName, renterDocumentNumber, renterAdress, ownerFirstName, ownerLastName, ownerDocumentNumber, ownerAdress),
               this.createHeading("Cap1"),
               ...cap1
                 .map(education => {
@@ -118,16 +118,20 @@ import {
       phoneNumber: string,
       profileUrl: string,
       email: string,
-      firstName: string, 
-      lastName: string,
-      DNI: string, 
-      adress: string
+      renterFirstName: string, 
+      renterLastName: string,
+      renterDocumentNumber: string, 
+      renterAdress: string,
+      ownerFirstName: string, 
+      ownerLastName: string,
+      ownerDocumentNumber: string, 
+      ownerAdress: string,
     ): Paragraph {
       return new Paragraph({
         alignment: AlignmentType.JUSTIFIED,
         children: [
           new TextRun(
-            `En la Ciudad de Buenos Aires, a los ${date.getDate()} días del mes de ${this.getMonthFromInt(date.getMonth()+ 1)} de ${date.getFullYear()}, entre  ${firstName + " " + lastName}, DNI N° ${DNI}, con domicilio en la calle ${adress}, domicilio electrónico ……………..por una parte, en lo sucesivo denominado/a como “LOCADOR/A”  por una parte, y por la otra   ………. DNI N° ………….., con domicilio en el inmueble locado, domicilio electrónico…………………. en adelante denominado/a como “LOCATARIO/A”, convienen en celebrar el presente contrato de LOCACIÓN  de vivienda, sujeto a las cláusulas siguientes y a las disposiciones del Código Civil y Comercial`+
+            `En la Ciudad de Buenos Aires, a los ${date.getDate()} días del mes de ${this.getMonthFromInt(date.getMonth()+ 1)} de ${date.getFullYear()}, entre  ${renterFirstName + " " + renterLastName}, DNI N° ${renterDocumentNumber}, con domicilio en la calle ${renterAdress}, domicilio electrónico ……………..por una parte, en lo sucesivo denominado/a como “LOCADOR/A”  por una parte, y por la otra   ………. DNI N° ………….., con domicilio en el inmueble locado, domicilio electrónico…………………. en adelante denominado/a como “LOCATARIO/A”, convienen en celebrar el presente contrato de LOCACIÓN  de vivienda, sujeto a las cláusulas siguientes y a las disposiciones del Código Civil y Comercial`+
             `Mobile: ${phoneNumber} | LinkedIn: ${profileUrl} | Email: ${email}`
           ),
           new TextRun({
