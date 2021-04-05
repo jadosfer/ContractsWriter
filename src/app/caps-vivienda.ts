@@ -1,4 +1,35 @@
+import {ViviendaComponent} from './contracts/vivienda/vivienda.Component';
+
 export const cap1 = [
+    {
+      degree: "Master of Science (MSc)",
+      fieldOfStudy: "Computer Science",
+      notes:
+        "Exam Results: 1st Class with Distinction, Dissertation: 1st Class with Distinction\n\nRelevant Courses: Java and C# Programming, Software Engineering, Artificial Intelligence, \nComputational Photography, Algorithmics, Architecture and Hardware.\n\nCreated a Windows 8 game in JavaScript for the dissertation. \n\nCreated an award-winning 3D stereoscopic game in C# using XNA.",
+      schoolName: "University College London",
+      startDate: {
+        year: 2012,
+      },
+      endDate: {
+        year: 2013,
+      },
+    },
+    {
+      degree: "Bachelor of Engineering (BEng)",
+      fieldOfStudy: "Material Science and Engineering",
+      notes:
+        "Exam Results: 2:1, Dissertation: 1st Class with Distinction\n\nRelevant courses: C Programming, Mathematics and Business for Engineers.",
+      schoolName: "Imperial College London",
+      startDate: {
+        year: 2009,
+      },
+      endDate: {
+        year: 2012,
+      },
+    },
+  ];
+
+export const cap2 = [
     {
       isCurrent: true,
       summary: "Full-stack developer working with Angular and Java. Working for the iShares platform",
@@ -64,34 +95,7 @@ export const cap1 = [
     },
   ];
   
-  export const cap2 = [
-    {
-      degree: "Master of Science (MSc)",
-      fieldOfStudy: "Computer Science",
-      notes:
-        "Exam Results: 1st Class with Distinction, Dissertation: 1st Class with Distinction\n\nRelevant Courses: Java and C# Programming, Software Engineering, Artificial Intelligence, \nComputational Photography, Algorithmics, Architecture and Hardware.\n\nCreated a Windows 8 game in JavaScript for the dissertation. \n\nCreated an award-winning 3D stereoscopic game in C# using XNA.",
-      schoolName: "University College London",
-      startDate: {
-        year: 2012,
-      },
-      endDate: {
-        year: 2013,
-      },
-    },
-    {
-      degree: "Bachelor of Engineering (BEng)",
-      fieldOfStudy: "Material Science and Engineering",
-      notes:
-        "Exam Results: 2:1, Dissertation: 1st Class with Distinction\n\nRelevant courses: C Programming, Mathematics and Business for Engineers.",
-      schoolName: "Imperial College London",
-      startDate: {
-        year: 2009,
-      },
-      endDate: {
-        year: 2012,
-      },
-    },
-  ];
+  
   
   export const cap3 = [
     {

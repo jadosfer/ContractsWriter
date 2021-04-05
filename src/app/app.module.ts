@@ -7,6 +7,7 @@ import { PresentationComponent } from './presentation/presentation.component';
 import { HomeComponent } from './home/home.component';
 import { ViviendaComponent } from './contracts/vivienda/vivienda.component';
 import { AutomotorComponent } from './contracts/automotor/automotor.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { AutomotorComponent } from './contracts/automotor/automotor.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

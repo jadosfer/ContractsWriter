@@ -1,3 +1,4 @@
+import {ViviendaComponent} from './contracts/vivienda/vivienda.Component';
 import {
     AlignmentType,
     Document,
@@ -14,18 +15,18 @@ import {
   
   export class DocumentCreator {
     // tslint:disable-next-line: typedef
-    public create([cap1, cap2, cap3, cap4]): Document {
+    public create([firstName, lastName, cap1, cap2, cap3, cap4]): Document {
       const document = new Document({
         sections: [
           {
             children: [
               new Paragraph({
-                text: "Dolan Miu",
+                text: firstName + " " + lastName,
                 heading: HeadingLevel.TITLE
               }),
               this.createContactInfo(PHONE_NUMBER, PROFILE_URL, EMAIL),
-              this.createHeading("Cap2"),
-              ...cap2
+              this.createHeading("Cap1"),
+              ...cap1
                 .map(education => {
                   const arr: Paragraph[] = [];
                   arr.push(
@@ -50,8 +51,8 @@ import {
                   return arr;
                 })
                 .reduce((prev, curr) => prev.concat(curr), []),
-              this.createHeading("Cap1"),
-              ...cap1
+              this.createHeading("Cap2"),
+              ...cap2
                 .map(position => {
                   const arr: Paragraph[] = [];
   

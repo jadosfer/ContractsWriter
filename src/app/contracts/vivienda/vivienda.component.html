@@ -1,6 +1,39 @@
+<div class="row">
+    <div class="col-md-8 col-xl-6 mx-auto">
 
-<p>
-	Start editing to see some magic happen :)
-</p>
+        <form [formGroup]="viviendaForm" (ngSubmit)="onSubmitClick()">
+  
+      
+        <div class="card mt-1">
+            <div class="card-header">
+              <h4>Contrato de Alquiler de Vivienda</h4>
+            </div>
+    
+            <div class="card-body">      
+                <div class="form-group form-row">            
+                <div class="col-md-8">
+                    <label for="firstName" class="col-md-4 col-form-label">Nombre:</label>
+                  <input type="text" name="firstName" id="firstName" placeholder="Nombre" class="form-control" formControlName="firstName">                 
+                </div>
+            </div>
 
-<button (click)="download()">Generate my file!</button>
+            <div class="form-group form-row"> 
+                <div class="col-md-8">
+                    <label for="lastName" class="col-md-4 col-form-label">Apellido:</label>
+                  <input type="text" name="lastName" id="lastName" placeholder="Apellido" class="form-control" formControlName="lastName" >                 
+                </div>  
+            </div>         
+          
+            </div>
+    
+            <div class="card-footer">
+              <button class="btn btn-success float-right" (click)="download()">Generar archivo .doc</button>                            
+            </div>
+    
+          </div>
+  
+        </form>
+    </div>
+  </div>
+
+
