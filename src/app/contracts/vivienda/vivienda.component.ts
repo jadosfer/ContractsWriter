@@ -17,6 +17,7 @@ export class ViviendaComponent implements OnInit {
 
   viviendaForm: FormGroup;
   submitted: boolean = false; //lo agregué  yo para poder determinar el submitted
+  fields = [{nombre: "Nombre", id: "firstName"}, {nombre: "Apellido", id: "lastName"}, {nombre: "DNI", id: "documentNumber"}, {nombre: "Dirección", id: "adress"}]
 
   constructor(public formBuilder: FormBuilder) { }
 
@@ -24,18 +25,20 @@ export class ViviendaComponent implements OnInit {
     this.viviendaForm = this.formBuilder.group({
       firstName: new FormControl(null),
       lastName: new FormControl(null),
+      documentNumber: new FormControl(null),
+      adress: new FormControl(null),
     })
   }
 
   public download(): void {
-    this.submitted = true;
-    cap2[0].company.name = this.viviendaForm.value["firstName"];
-    cap2[0].title = this.viviendaForm.value["lastName"];
+    this.submitted = true; 
     
     const documentCreator = new DocumentCreator();
     const doc = documentCreator.create([
       this.viviendaForm.value["firstName"],
       this.viviendaForm.value["lastName"],
+      this.viviendaForm.value["documentNumber"],
+      this.viviendaForm.value["adress"],
       cap1,
       cap2,
       cap3,
@@ -54,5 +57,5 @@ export class ViviendaComponent implements OnInit {
     this.submitted = true;    
     console.log(this.viviendaForm.value); //acceder a todos los campos
     console.log(this.viviendaForm.value["firstName"]); //acceder a un campo puntual   
-  }
+  }  
 }

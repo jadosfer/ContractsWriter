@@ -9,22 +9,30 @@ import {
     TabStopType,
     TextRun
   } from "docx";
+  
   const PHONE_NUMBER = "07534563401";
+  const INTRO = "07534563401";
   const PROFILE_URL = "https://www.linkedin.com/in/dolan1";
   const EMAIL = "docx@docx.com";
+  var date = new Date;
+
   
   export class DocumentCreator {
+    
     // tslint:disable-next-line: typedef
-    public create([firstName, lastName, cap1, cap2, cap3, cap4]): Document {
+    public create([firstName, lastName, DNI, adress, cap1, cap2, cap3, cap4]): Document {
       const document = new Document({
         sections: [
           {
             children: [
               new Paragraph({
-                text: firstName + " " + lastName,
-                heading: HeadingLevel.TITLE
+                text: "CONTRATO DE LOCACIÓN \n\r \n",
+                heading: HeadingLevel.HEADING_1
               }),
-              this.createContactInfo(PHONE_NUMBER, PROFILE_URL, EMAIL),
+              new Paragraph({
+                text: ""
+              }),
+              this.createContactInfo(PHONE_NUMBER, PROFILE_URL, EMAIL, firstName, lastName, DNI, adress),
               this.createHeading("Cap1"),
               ...cap1
                 .map(education => {
@@ -109,12 +117,17 @@ import {
     public createContactInfo(
       phoneNumber: string,
       profileUrl: string,
-      email: string
+      email: string,
+      firstName: string, 
+      lastName: string,
+      DNI: string, 
+      adress: string
     ): Paragraph {
       return new Paragraph({
-        alignment: AlignmentType.CENTER,
+        alignment: AlignmentType.JUSTIFIED,
         children: [
           new TextRun(
+            `En la Ciudad de Buenos Aires, a los ${date.getDate()} días del mes de ${this.getMonthFromInt(date.getMonth()+ 1)} de ${date.getFullYear()}, entre  ${firstName + " " + lastName}, DNI N° ${DNI}, con domicilio en la calle ${adress}, domicilio electrónico ……………..por una parte, en lo sucesivo denominado/a como “LOCADOR/A”  por una parte, y por la otra   ………. DNI N° ………….., con domicilio en el inmueble locado, domicilio electrónico…………………. en adelante denominado/a como “LOCATARIO/A”, convienen en celebrar el presente contrato de LOCACIÓN  de vivienda, sujeto a las cláusulas siguientes y a las disposiciones del Código Civil y Comercial`+
             `Mobile: ${phoneNumber} | LinkedIn: ${profileUrl} | Email: ${email}`
           ),
           new TextRun({
@@ -232,29 +245,29 @@ import {
     public getMonthFromInt(value: number): string {
       switch (value) {
         case 1:
-          return "Jan";
+          return "Enero";
         case 2:
-          return "Feb";
+          return "Febrero";
         case 3:
-          return "Mar";
+          return "Marzo";
         case 4:
-          return "Apr";
+          return "Abril";
         case 5:
-          return "May";
+          return "Mayo";
         case 6:
-          return "Jun";
+          return "Junio";
         case 7:
-          return "Jul";
+          return "Julio";
         case 8:
-          return "Aug";
+          return "Agosto";
         case 9:
-          return "Sept";
+          return "Septiembre";
         case 10:
-          return "Oct";
+          return "Octubre";
         case 11:
-          return "Nov";
+          return "Noviembre";
         case 12:
-          return "Dec";
+          return "Diciembre";
         default:
           return "N/A";
       }

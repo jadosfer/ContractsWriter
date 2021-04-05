@@ -7,24 +7,20 @@
         <div class="card mt-1">
             <div class="card-header">
               <h4>Contrato de Alquiler de Vivienda</h4>
-            </div>
-    
-            <div class="card-body">      
-                <div class="form-group form-row">            
-                <div class="col-md-8">
-                    <label for="firstName" class="col-md-4 col-form-label">Nombre:</label>
-                  <input type="text" name="firstName" id="firstName" placeholder="Nombre" class="form-control" formControlName="firstName">                 
-                </div>
-            </div>
-
-            <div class="form-group form-row"> 
-                <div class="col-md-8">
-                    <label for="lastName" class="col-md-4 col-form-label">Apellido:</label>
-                  <input type="text" name="lastName" id="lastName" placeholder="Apellido" class="form-control" formControlName="lastName" >                 
-                </div>  
-            </div>         
-          
-            </div>
+            </div>            
+            
+            <table>
+                <tr  *ngFor="let field of fields">                        
+                        <div class="form-group form-row">            
+                            <div class="col-md-8">                        
+                                <label for="{{field.id}}" class="col-md-4 col-form-label">{{field.nombre}}:</label>
+                                <input type="text" name="{{field.id}}" id="{{field.id}}" placeholder="{{field.nombre}}" class="form-control" formControlName="{{field.id}}">                                             
+                            </div>
+                        </div>                   
+                  </tr>
+              </table>
+            
+               
     
             <div class="card-footer">
               <button class="btn btn-success float-right" (click)="download()">Generar archivo .doc</button>                            
