@@ -20,7 +20,7 @@ import {
   export class DocumentCreator {
     
     // tslint:disable-next-line: typedef
-    public create([renterFirstName, renterLastName, renterDocumentNumber, renterAdress, ownerFirstName, ownerLastName, ownerDocumentNumber, ownerAdress, cap1, cap2, cap3, cap4]): Document {
+    public create([owner, renter, cap1, cap2, cap3, cap4]): Document {
       const document = new Document({
         sections: [
           {
@@ -29,83 +29,21 @@ import {
                 text: "CONTRATO DE LOCACIÓN \n\r \n",
                 heading: HeadingLevel.HEADING_1
               }),
-              new Paragraph({
-                text: ""
-              }),
-              this.createContactInfo(PHONE_NUMBER, PROFILE_URL, EMAIL, renterFirstName, renterLastName, renterDocumentNumber, renterAdress, ownerFirstName, ownerLastName, ownerDocumentNumber, ownerAdress),
-              this.createHeading("Cap1"),
-              ...cap1
-                .map(education => {
-                  const arr: Paragraph[] = [];
-                  arr.push(
-                    this.createInstitutionHeader(
-                      education.schoolName,
-                      `${education.startDate.year} - ${education.endDate.year}`
-                    )
-                  );
-                  arr.push(
-                    this.createRoleText(
-                      `${education.fieldOfStudy} - ${education.degree}`
-                    )
-                  );
-  
-                  const bulletPoints = this.splitParagraphIntoBullets(
-                    education.notes
-                  );
-                  bulletPoints.forEach(bulletPoint => {
-                    arr.push(this.createBullet(bulletPoint));
-                  });
-  
-                  return arr;
-                })
-                .reduce((prev, curr) => prev.concat(curr), []),
-              this.createHeading("Cap2"),
-              ...cap2
-                .map(position => {
-                  const arr: Paragraph[] = [];
-  
-                  arr.push(
-                    this.createInstitutionHeader(
-                      position.company.name,
-                      this.createPositionDateText(
-                        position.startDate,
-                        position.endDate,
-                        position.isCurrent
-                      )
-                    )
-                  );
-                  arr.push(this.createRoleText(position.title));
-  
-                  const bulletPoints = this.splitParagraphIntoBullets(
-                    position.summary
-                  );
-  
-                  bulletPoints.forEach(bulletPoint => {
-                    arr.push(this.createBullet(bulletPoint));
-                  });
-  
-                  return arr;
-                })
-                .reduce((prev, curr) => prev.concat(curr), []),
-              this.createHeading("Cap3, Cap4"),
-              this.createSubHeading("Cap3"),
-              this.createSkillList(cap3),
-              this.createSubHeading("Cap4"),
-              ...this.createAchivementsList(cap4),
-              this.createSubHeading("Interests"),
-              this.createInterests(
-                "Programming, Technology, Music Production, Web Design, 3D Modelling, Dancing."
-              ),
-              this.createHeading("References"),
-              new Paragraph(
-                "Dr. Dean Mohamedally Director of Postgraduate Studies Department of Computer Science, University College London Malet Place, Bloomsbury, London WC1E d.mohamedally@ucl.ac.uk"
-              ),
-              new Paragraph("More references upon request"),
-              new Paragraph({
-                text:
-                  "This CV was generated in real-time based on my Linked-In profile from my personal website www.dolan.bio.",
-                alignment: AlignmentType.CENTER
-              })
+
+              new Paragraph({text: ""}),
+              this.createHeader(owner, renter),
+
+              new Paragraph({text: ""}),
+              this.createHeading("PRIMERA"),     
+              this.createFirstCap(renter),
+              
+              new Paragraph({text: ""}),
+              
+              this.createHeading("SEGUNDA"),
+              this.createSecondCap(renter),
+              
+              new Paragraph({text: ""}),
+              
             ]
           }
         ]
@@ -114,33 +52,42 @@ import {
       return document;
     }
   
-    public createContactInfo(
-      phoneNumber: string,
-      profileUrl: string,
-      email: string,
-      renterFirstName: string, 
-      renterLastName: string,
-      renterDocumentNumber: string, 
-      renterAdress: string,
-      ownerFirstName: string, 
-      ownerLastName: string,
-      ownerDocumentNumber: string, 
-      ownerAdress: string,
+    public createHeader(         
+      owner,
+      renter      
     ): Paragraph {
       return new Paragraph({
         alignment: AlignmentType.JUSTIFIED,
         children: [
           new TextRun(
-            `En la Ciudad de Buenos Aires, a los ${date.getDate()} días del mes de ${this.getMonthFromInt(date.getMonth()+ 1)} de ${date.getFullYear()}, entre  ${renterFirstName + " " + renterLastName}, DNI N° ${renterDocumentNumber}, con domicilio en la calle ${renterAdress}, domicilio electrónico ……………..por una parte, en lo sucesivo denominado/a como “LOCADOR/A”  por una parte, y por la otra   ………. DNI N° ………….., con domicilio en el inmueble locado, domicilio electrónico…………………. en adelante denominado/a como “LOCATARIO/A”, convienen en celebrar el presente contrato de LOCACIÓN  de vivienda, sujeto a las cláusulas siguientes y a las disposiciones del Código Civil y Comercial`+
-            `Mobile: ${phoneNumber} | LinkedIn: ${profileUrl} | Email: ${email}`
-          ),
-          new TextRun({
-            text: "Address: 58 Elm Avenue, Kent ME4 6ER, UK",
-            break: 1
-          })
+            `En la Ciudad de Buenos Aires, a los ${date.getDate()} días del mes de ${this.getMonthFromInt(date.getMonth()+ 1)} de ${date.getFullYear()}, entre ${owner.firstName + " " + owner.lastName}, DNI N° ${owner.documentNumber}, con domicilio en la calle ${owner.adress}, domicilio electrónico ${owner.email} en lo sucesivo denominado/a como “LOCADOR/A” por una parte, y por la otra ${renter.firstName + " " + renter.lastName}, DNI N° ${renter.documentNumber}, con domicilio en el inmueble locado, domicilio electrónico ${renter.email}, en adelante denominado/a como “LOCATARIO/A”, convienen en celebrar el presente contrato de LOCACIÓN  de vivienda, sujeto a las cláusulas siguientes y a las disposiciones del Código Civil y Comercial-----------------------------`            
+          ),         
         ]
       });
     }
+
+    public createFirstCap(renter): Paragraph{
+        return new Paragraph({
+          alignment: AlignmentType.JUSTIFIED,
+          children: [
+            new TextRun(
+              `EL/LA “LOCADOR/A” cede en locación al “LOCATARIO/A”, que acepta ocupar en tal carácter, el inmueble ubicado en calle ${renter.adress}. de la Ciudad Autónoma de Buenos Aires. El LOCATARIO/A se obliga a destinar el inmueble locado para vivienda familiar, no pudiendo ello ser modificado, ni aún en forma temporaria, sin el consentimiento expreso del/la  “LOCADOR/A”.`            
+            ),           
+          ]
+        });
+      }
+
+      public createSecondCap(renter): Paragraph{
+        return new Paragraph({
+          alignment: AlignmentType.JUSTIFIED,
+          children: [
+            new TextRun(
+              `Las partes acuerdan que el plazo de vigencia de la locación será de 36 (TREINTA Y SEIS)  meses a contar desde el día ….. del mes de …………. del año DOS MIL ……….. por lo que su vencimiento se producirá de pleno derecho e indefectiblemente el día`            
+            ),           
+          ]
+        });
+      }
+
   
     public createHeading(text: string): Paragraph {
       return new Paragraph({

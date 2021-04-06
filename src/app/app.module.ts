@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { ViviendaComponent } from './contracts/vivienda/vivienda.component';
 import { AutomotorComponent } from './contracts/automotor/automotor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Vivienda2Component } from './contracts/vivienda/vivienda2/vivienda2.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PresentationComponent,
     HomeComponent,
     ViviendaComponent,
-    AutomotorComponent
+    AutomotorComponent,
+    Vivienda2Component
   ],
   imports: [
     BrowserModule,

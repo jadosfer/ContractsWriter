@@ -1,37 +1,30 @@
 <div class="row">
     <div class="col-md-8 col-xl-10 mx-auto">
+        <form [formGroup]="vivienda2Form" >
+            <div class="card mt-1">
+                <div class="card-header">
+                <h4>Contrato de Alquiler de Vivienda</h4>
+                </div>   
 
-        <form [formGroup]="viviendaForm" >
-  
-      
-        <div class="card mt-1">
-            <div class="card-header">
-              <h4>Contrato de Alquiler de Vivienda</h4>
-            </div>   
-            
-            <label for="" class="col-md-4 col-form-label"><b>Datos del Propietario:</b></label>
+            <label for="" class="col-md-4 col-form-label"><b>Datos del Inquilino:</b></label>
 
+                        
             <table>
-                <tr  *ngFor="let field of ownerFields">                        
+                <tr  *ngFor="let field of renterFields">                        
                         <div class="form-group form-row">            
                             <div class="col-md-8">                        
                                 <label for="{{field.id}}" class="col-md-4 col-form-label">{{field.nombre}}:</label>
                                 <input type="text" name="{{field.id}}" id="{{field.id}}" placeholder="{{field.nombre}}" class="form-control" formControlName="{{field.id}}">                                             
                             </div>
                         </div>                   
-                  </tr>
-              </table>    
-         
-          </div>
-  
-        </form>
+                </tr>
+            </table>
 
+            </div>
+        </form>
         <div class="card-footer">
-            <button class="btn btn-success float-right"  (click)="step2()" routerLink="/vivienda2">Continuar</button>                            
+            <button class="btn btn-success float-right" (click)="download()" routerLink="../contracts">Crear Archivo .doc</button> 
             <button class="btn btn-success float-right" routerLink="../contracts">Volver</button>                            
           </div>
     </div>
   </div>
-
-
-
